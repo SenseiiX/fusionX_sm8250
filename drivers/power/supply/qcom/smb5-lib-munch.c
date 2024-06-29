@@ -4908,7 +4908,7 @@ static void smblib_conn_therm_work(struct work_struct *work)
 					rc = power_supply_get_property(chg->cp_sec_psy,POWER_SUPPLY_PROP_CHARGING_ENABLED,&val);
 					if(!rc)
 						cp_slave_enabled = val.intval;
-	}
+				}
 				smblib_err(chg, "connect temp is too hot,cp_enable:%d,cp_sec_enable:%d,etry_count:%d\n",
 						cp_master_enabled,cp_slave_enabled,retry_count);
 
@@ -4943,7 +4943,6 @@ static void smblib_conn_therm_work(struct work_struct *work)
 			}
 			val.intval = 0;
 			power_supply_set_property(chg->batt_psy,POWER_SUPPLY_PROP_INPUT_SUSPEND,&val);
-
 		}
 		power_supply_changed(chg->usb_psy);
 	}
@@ -7733,7 +7732,6 @@ irqreturn_t chg_state_change_irq_handler(int irq, void *data)
 		schedule_delayed_work(&chg->wireless_full_delay_work,
 				msecs_to_jiffies(WIRELESS_DELAY_WAKE_MS));
 	}
-
 	power_supply_changed(chg->batt_psy);
 	return IRQ_HANDLED;
 }
@@ -9336,7 +9334,6 @@ static void determine_thermal_current(struct smb_charger *chg)
 	}
 }
 
-
 static void smblib_slow_pd_wa(struct work_struct *work)
 {
 	struct smb_charger *chg = container_of(work, struct smb_charger, slow_pd_wa_work.work);
@@ -9897,6 +9894,7 @@ static void typec_src_removal(struct smb_charger *chg)
 	vote(chg->usb_icl_votable, QC2_UNSUPPORTED_VOTER, false, 0);
 	vote(chg->usb_icl_votable, QC3P5_VOTER, false, 0);
 	vote(chg->fcc_votable, NON_PPS_PD_FCC_VOTER, false, 0);
+
 	/* reset usb irq voters */
 	vote(chg->limited_irq_disable_votable, CHARGER_TYPE_VOTER,
 			true, 0);

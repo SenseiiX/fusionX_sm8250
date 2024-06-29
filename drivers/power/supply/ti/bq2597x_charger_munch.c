@@ -683,7 +683,6 @@ static int bq2597x_set_busovp_th(struct bq2597x *bq, int threshold)
 	ret = bq2597x_update_bits(bq, BQ2597X_REG_06,
 				BQ2597X_BUS_OVP_MASK, val);
 
-
 	//ret = bq2597x_update_bits(bq, 0x31,
 	//			0x20, 0x20);
 	bq_err("diable busovp %d,val:%d,ret:%d\n", threshold,val,ret);

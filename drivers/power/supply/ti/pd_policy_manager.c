@@ -905,6 +905,7 @@ static void usbpd_update_pps_status(struct usbpd_pm *pdpm)
 				pdpm->adapter_ptf, pdpm->adapter_omf);
 	}
 }
+
 int pd_log_count = 0;
 #define TAPER_TIMEOUT	(10000 / PM_WORK_RUN_QUICK_INTERVAL)
 #define IBUS_CHANGE_TIMEOUT  (1000 / PM_WORK_RUN_QUICK_INTERVAL)
@@ -1522,6 +1523,7 @@ static int usbpd_pm_sm(struct usbpd_pm *pdpm)
 			vote(pdpm->fcc_votable, BQ_TAPER_CELL_HGIH_FCC_VOTER,
 					false, 0);
 		}
+
 #if defined(CONFIG_CHARGER_LN8000)
 		if (pm_config.cp_sec_enable && pdpm->cp_sec.charge_enabled) {
 			usbpd_pm_enable_cp_sec(pdpm, false);
