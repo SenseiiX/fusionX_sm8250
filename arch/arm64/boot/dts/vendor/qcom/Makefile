@@ -1,3 +1,5 @@
+ifeq (,,)
+
 ifeq ($(CONFIG_BOARD_XIAOMI_SM8250),y)
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 
@@ -435,6 +437,12 @@ dtb-$(CONFIG_ARCH_SDM429) += sdm429-mtp.dtb \
 	sda429-cdp.dtb
 endif
 endif
+
+endif
+
+dtbo-$(CONFIG_BOARD_MUNCH) += \
+                munch-sm8250-overlay.dtbo
+munch-sm8250-overlay.dtbo-base := kona-v2.1.dtb
 
 always		:= $(dtb-y)
 subdir-y	:= $(dts-dirs)
