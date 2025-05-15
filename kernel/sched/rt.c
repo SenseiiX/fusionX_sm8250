@@ -9,8 +9,6 @@
 
 #include <trace/events/sched.h>
 
-#include "walt.h"
-
 int sched_rr_timeslice = RR_TIMESLICE;
 int sysctl_sched_rr_timeslice = (MSEC_PER_SEC * RR_TIMESLICE) / HZ;
 
@@ -1487,12 +1485,7 @@ static bool rt_task_fits_cpu(struct task_struct *p, int cpu)
 }
 
 static int
-#ifdef CONFIG_SCHED_WALT
-select_task_rq_rt(struct task_struct *p, int cpu, int sd_flag, int flags,
-		 int sibling_count_hint)
-#else
 select_task_rq_rt(struct task_struct *p, int cpu, int sd_flag, int flags)
-#endif
 {
 	struct task_struct *curr;
 	struct rq *rq;
@@ -2560,9 +2553,6 @@ const struct sched_class rt_sched_class = {
 	.switched_to		= switched_to_rt,
 
 	.update_curr		= update_curr_rt,
-#ifdef CONFIG_SCHED_WALT
-	.fixup_walt_sched_stats	= fixup_walt_sched_stats_common,
-#endif
 
 #ifdef CONFIG_UCLAMP_TASK
 	.uclamp_enabled		= 1,
