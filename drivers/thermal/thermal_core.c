@@ -1737,10 +1737,18 @@ thermal_sconfig_store(struct device *dev,
 
 	ret = kstrtoint(buf, 10, &val);
 
-	atomic_set(&switch_mode, val);
-
 	if (ret)
 		return ret;
+
+	// Handle thermal mode switching based on input value
+	if (val == 0) {
+		atomic_set(&switch_mode, 10);
+	} else if (val == -1) {
+		atomic_set(&switch_mode, -1);
+	} else {
+		atomic_set(&switch_mode, val);
+	}
+
 	return len;
 }
 
