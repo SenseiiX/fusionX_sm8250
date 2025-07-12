@@ -51,6 +51,9 @@ void hci_conn_add_sysfs(struct hci_conn *conn)
 	if (device_is_registered(&conn->dev))
 		return;
 
+	if (device_is_registered(&conn->dev))
+		return;
+
 	dev_set_name(&conn->dev, "%s:%d", hdev->name, conn->handle);
 
 	if (device_add(&conn->dev) < 0)
