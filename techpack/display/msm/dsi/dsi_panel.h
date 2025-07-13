@@ -244,9 +244,6 @@ struct dsi_panel {
 
 	struct brightness_alpha_pair *fod_dim_lut;
 	u32 fod_dim_lut_count;
-#ifdef CONFIG_DRM_SDE_EXPO
-	bool dimlayer_exposure;
-#endif
 	int hbm_mode;
 };
 
