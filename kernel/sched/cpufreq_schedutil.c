@@ -363,7 +363,7 @@ static inline unsigned long apply_dvfs_headroom(unsigned long util, int cpu)
 	 * capacity
 	 */
 	delta = capacity - util;
-	headroom = (delta * delta) / (5 * capacity);
+	headroom = (delta * delta) / (4 * capacity);
 
 	/* Cap the quadratic boost to 12.5% of capacity */
 	max_boost = capacity >> 3;
