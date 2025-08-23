@@ -231,7 +231,7 @@ static unsigned int get_next_freq(struct sugov_policy *sg_policy,
 static inline unsigned long apply_dvfs_headroom(unsigned long util, int cpu)
 {
 	unsigned long capacity = capacity_orig_of(cpu);
-	unsigned long delta, headroom, min_util;
+	unsigned long delta, headroom;
 	unsigned long base_boost = 0, max_boost, final_hr;
 	unsigned int pct;
 
