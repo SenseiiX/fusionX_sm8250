@@ -10,6 +10,10 @@
 #include <linux/scatterlist.h>
 #include <linux/swap.h>
 
+#ifdef CONFIG_FUSIONX_SIGNATURE
+#include <linux/fusionx_attributes.h>
+#endif
+
 #include "kgsl_device.h"
 #include "kgsl_pool.h"
 #include "kgsl_sharedmem.h"
@@ -337,7 +341,9 @@ int kgsl_pool_alloc_page(int *page_size, struct page **pages,
 	}
 
 done:
-	kgsl_zero_page(page, order, dev);
+	if (fusionx_data.fusionx_kgsl_skip_zeroing == 0)
+    	kgsl_zero_page(page, order, dev);
+
 	for (j = 0; j < (*page_size >> PAGE_SHIFT); j++) {
 		p = nth_page(page, j);
 		pages[pcount] = p;
