@@ -4,6 +4,12 @@
 
 menu "Misc devices"
 
+config FUSIONX_SIGNATURE
+    tristate "Signature FUSIONX kernel build"
+    default n
+    help
+      Enable this to build the FUSIONX kernel signature attributes module.
+
 config SPI_XIAOMI_TP
         bool
         depends on SPI
