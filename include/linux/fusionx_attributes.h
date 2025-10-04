@@ -8,7 +8,7 @@
 #include <linux/sysfs.h>
 
 struct fusionx_attributes {
-    int fusionx_kgsl_skip_zeroing;
+    int kgsl_skip_zeroing;
 };
 
 extern struct fusionx_attributes fusionx_data;
